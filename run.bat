@@ -15,6 +15,10 @@ IF [%1]==[] (
     GOTO END
 )
 
+IF %1==build (
+    CALL :build
+    GOTO END
+)
 IF %1==build_start (
     CALL :down
     CALL :build
