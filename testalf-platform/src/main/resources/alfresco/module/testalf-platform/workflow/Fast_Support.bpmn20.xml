@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/processdef">
+  <process id="fastSupport" name="Процес Швидкий Виклик" isExecutable="true">
+    <documentation>Description Fast Support Model one task</documentation>
+    <startEvent id="startTask"  name="Створення Швидкого Виклику" activiti:formKey="tawf:startFastSupport"/>
+    <serviceTask id="createPackage" name="Create Package" activiti:class="org.alfresco.repo.workflow.activiti.script.AlfrescoScriptDelegate">
+      <extensionElements>
+        <activiti:field name="script">
+          <activiti:string>
+            var pkg = execution.getVariable('bpm_package');
+            if (!pkg) {
+              pkg = workflow.createPackage();
+              execution.setVariable('bpm_package', pkg);
+            }
+          </activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <userTask id="mainTask"  name="Швидкий Виклик" activiti:formKey="tawf:fastSupportTask">
+      <humanPerformer>
+        <resourceAssignmentExpression>
+          <formalExpression>${bpm_assignee.properties.userName}</formalExpression>
+        </resourceAssignmentExpression>
+      </humanPerformer>
+    </userTask>
+    <endEvent id="endTask"/>
+    <sequenceFlow id="sid-43B5F299-B359-404B-BFBE-54E71B3B6CA3" sourceRef="startTask" targetRef="createPackage"/>
+    <sequenceFlow id="sid-43B5F299-B359-404B-BFBE-54E71B3B6CA4" sourceRef="createPackage" targetRef="mainTask"/>
+    <sequenceFlow id="sid-89977A6E-F96C-445A-B4BB-E9AA24CDD69B" sourceRef="mainTask" targetRef="endTask"/>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_fastSupport">
+    <bpmndi:BPMNPlane bpmnElement="fastSupport" id="BPMNPlane_fastSupport">
+      <bpmndi:BPMNShape bpmnElement="startTask" id="BPMNShape_startTask">
+        <omgdc:Bounds height="30.0" width="30.0" x="99.99999850988391" y="162.99999757111075"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="mainTask" id="BPMNShape_mainTask">
+        <omgdc:Bounds height="80.0" width="99.99999999999997" x="164.99999754130843" y="134.99999597668656"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="endTask" id="BPMNShape_endTask">
+        <omgdc:Bounds height="28.0" width="28.0" x="299.9999955296517" y="163.9999951273204"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="sid-43B5F299-B359-404B-BFBE-54E71B3B6CA3" id="BPMNEdge_sid-43B5F299-B359-404B-BFBE-54E71B3B6CA3">
+        <omgdi:waypoint x="129.9932530554236" y="177.55019969133184"/>
+        <omgdi:waypoint x="164.99999754130843" y="176.4999967884273"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sid-89977A6E-F96C-445A-B4BB-E9AA24CDD69B" id="BPMNEdge_sid-89977A6E-F96C-445A-B4BB-E9AA24CDD69B">
+        <omgdi:waypoint x="264.9999975413084" y="176.51514709365279"/>
+        <omgdi:waypoint x="300.00641901824247" y="177.57594746568813"/>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>

@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model name="tawf:workflowModel" xmlns="http://www.alfresco.org/model/dictionary/1.0">
+    <!-- Optional meta-data about the model -->
+    <description>Sample Workflow Model</description>
+    <author>Alexandr Livitskiy</author>
+    <version>1.0</version>
+
+    <imports>
+        <!-- Import Alfresco Dictionary Definitions -->
+        <import uri="http://www.alfresco.org/model/dictionary/1.0" prefix="d"/>
+        <!-- Import Alfresco Content Domain Model Definitions -->
+        <import uri="http://www.alfresco.org/model/content/1.0" prefix="cm"/>
+        <!-- Import Alfresco Workflow Model Definitions -->
+        <import uri="http://www.alfresco.org/model/bpm/1.0" prefix="bpm"/>
+    </imports>
+
+    <!-- Custom namespace for your domain -->
+    <namespaces>
+        <namespace uri="http://www.testalf.onu.edu.ua/model/workflow/1.0" prefix="tawf"/>
+    </namespaces>
+
+    <!-- ===============================================================================================================
+        Constraints, Types, and Aspects go here...
+        -->
+    <types>
+        <type name="tawf:startFastSupport">
+            <parent>bpm:startTask</parent>
+            <mandatory-aspects>
+                <aspect>bpm:assignee</aspect>
+                <aspect>tawf:fastSupportAspect</aspect>
+            </mandatory-aspects>
+        </type>
+
+        <type name="tawf:fastSupportTask">
+            <parent>bpm:workflowTask</parent>
+            <overrides>
+                <property name="bpm:packageActionGroup">
+                    <default>add_package_item_actions</default>
+                </property>
+                <property name="bpm:packageItemActionGroup">
+                    <default>edit_package_item_actions</default>
+                </property>
+            </overrides>
+            <mandatory-aspects>
+                <aspect>tawf:fastSupportAspect</aspect>
+            </mandatory-aspects>
+        </type>
+    </types>
+
+    <aspects>
+        <aspect name="tawf:fastSupportAspect">
+            <properties>
+                <property name="tawf:description">
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                    <multiple>false</multiple>
+                    <constraints>
+                        <constraint name="tawf:descriptionLengthConstraint" type="LENGTH">
+                            <parameter name="maxLength">
+                                <value>1024</value>
+                            </parameter>
+                        </constraint>
+                    </constraints>
+                </property>
+                <property name="tawf:customer">
+                    <type>d:text</type>
+                    <mandatory>true</mandatory>
+                    <multiple>false</multiple>
+                    <constraints>
+                        <constraint name="tawf:customerLengthConstraint" type="LENGTH">
+                            <parameter name="maxLength">
+                                <value>70</value>
+                            </parameter>
+                        </constraint>
+                    </constraints>
+                </property>
+                <property name="tawf:address">
+                    <type>d:text</type>
+                    <mandatory>true</mandatory>
+                    <multiple>false</multiple>
+                    <constraints>
+                        <constraint name="tawf:addressConstraint" type="LIST">
+                            <parameter name="allowedValues">
+                                <list>
+                                    <value>Дворянська 2</value>
+                                    <value>Університетська 14</value>
+                                </list>
+                            </parameter>
+                        </constraint>
+                    </constraints>
+                </property>
+                <property name="tawf:room">
+                    <type>d:text</type>
+                    <mandatory>true</mandatory>
+                    <multiple>false</multiple>
+                    <constraints>
+                        <constraint name="tawf:roomLengthConstraint" type="LENGTH">
+                            <parameter name="maxLength">
+                                <value>70</value>
+                            </parameter>
+                        </constraint>
+                    </constraints>
+                </property>
+                <property name="tawf:doneWorks">
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                    <multiple>false</multiple>
+                    <constraints>
+                        <constraint name="tawf:doneWorksLengthConstraint" type="LENGTH">
+                            <parameter name="maxLength">
+                                <value>1024</value>
+                            </parameter>
+                        </constraint>
+                    </constraints>
+                </property>
+                <property name="tawf:comment">
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                    <multiple>false</multiple>
+                    <constraints>
+                        <constraint name="tawf:commentLengthConstraint" type="LENGTH">
+                            <parameter name="maxLength">
+                                <value>1024</value>
+                            </parameter>
+                        </constraint>
+                    </constraints>
+                </property>
+                <property name="tawf:priority">
+                    <type>d:text</type>
+                    <mandatory>true</mandatory>
+                    <multiple>false</multiple>
+                    <constraints>
+                        <constraint name="tawf:priorityConstraint" type="LIST">
+                            <parameter name="allowedValues">
+                                <list>
+                                    <value>Низький</value>
+                                    <value>Середній</value>
+                                    <value>Високий</value>
+                                </list>
+                            </parameter>
+                        </constraint>
+                    </constraints>
+                </property>
+            </properties>
+        </aspect>
+    </aspects>
+
+</model>
+
