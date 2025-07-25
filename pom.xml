@@ -146,7 +146,9 @@
                             </goals>
                             <configuration>
                                 <appendAssemblyId>false</appendAssemblyId>
-                                <descriptor>src/main/assembly/amp.xml</descriptor>
+                                <descriptors>
+                                    <descriptor>src/main/assembly/amp.xml</descriptor>
+                                </descriptors>
                             </configuration>
                         </execution>
                     </executions>
