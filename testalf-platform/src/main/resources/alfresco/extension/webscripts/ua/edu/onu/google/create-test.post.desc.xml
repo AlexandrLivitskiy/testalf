@@ -1,0 +1,6 @@
+<webscript>
+    <shortname>Create Google Doc</shortname>
+    <url>/google/createTest</url>
+    <format default="json"/>
+    <authentication>user</authentication>
+</webscript>

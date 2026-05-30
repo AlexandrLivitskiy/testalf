@@ -1,0 +1,11 @@
+<webscript>
+    <shortname>Get Google Token</shortname>
+    <description>Returns stored Google OAuth token</description>
+    <url>/google/getToken</url>
+
+    <authentication>user</authentication>
+<!--    <transaction>none</transaction>-->
+
+    <method>GET</method>
+    <format default="json"/>
+</webscript>

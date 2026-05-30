@@ -1,0 +1,6 @@
+<webscript>
+    <shortname>Google Token Test</shortname>
+    <family>Share</family>
+    <url>/google-test</url>
+    <authentication>user</authentication>
+</webscript>

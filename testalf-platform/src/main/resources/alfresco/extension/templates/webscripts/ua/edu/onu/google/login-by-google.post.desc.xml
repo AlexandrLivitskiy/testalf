@@ -1,0 +1,8 @@
+<webscript>
+    <shortname>Login by Google</shortname>
+    <description>Login by Google Token</description>
+    <url>/google/login</url>
+    <authentication>none</authentication>
+    <method>POST</method>
+    <format default="json"/>
+</webscript>

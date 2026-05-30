@@ -23,6 +23,16 @@
         </property>
     </bean>
 
+    <bean id="testalf-platform.googleModelBootstrap"
+          parent="dictionaryModelBootstrap"
+          depends-on="dictionaryBootstrap">
+        <property name="models">
+            <list>
+                <value>alfresco/module/${project.artifactId}/model/googleModel.xml</value>
+            </list>
+        </property>
+    </bean>
+
     <bean id="ua.edu.onu.sampleprocess.workflowBootstrap" parent="workflowDeployer">
         <property name="workflowDefinitions">
             <list>
@@ -40,6 +50,11 @@
                 <props>
                     <prop key="engineId">activiti</prop>
                     <prop key="location">alfresco/module/${project.artifactId}/workflow/Fast_Support.bpmn20.xml</prop>
+                    <prop key="mimetype">text/xml</prop>
+                </props>
+                <props>
+                    <prop key="engineId">activiti</prop>
+                    <prop key="location">alfresco/module/${project.artifactId}/workflow/google-doc-workflow.bpmn20.xml</prop>
                     <prop key="mimetype">text/xml</prop>
                 </props>
             </list>

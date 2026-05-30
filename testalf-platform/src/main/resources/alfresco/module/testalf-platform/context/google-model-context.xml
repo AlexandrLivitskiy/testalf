@@ -1,0 +1,7 @@
+<bean id="google.model" parent="dictionaryModelBootstrap">
+    <property name="models">
+        <list>
+            <value>alfresco/module/testalf-platform/model/googleModel.xml</value>
+        </list>
+    </property>
+</bean>

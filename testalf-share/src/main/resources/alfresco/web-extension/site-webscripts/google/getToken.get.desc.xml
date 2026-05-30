@@ -1,0 +1,8 @@
+<webscript>
+    <shortname>getGoogleToken</shortname>
+    <description>Get Google OAuth token for current user</description>
+    <family>Share</family>
+    <url>/google/getToken</url>
+    <authentication>user</authentication>
+    <format default="html"/>
+</webscript>

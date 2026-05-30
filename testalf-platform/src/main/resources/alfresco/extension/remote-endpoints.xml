@@ -1,0 +1,15 @@
+<alfresco-config>
+    <remote>
+        <endpoint>
+            <id>google</id>
+            <connector-id>http</connector-id>
+            <endpoint-url>https://oauth2.googleapis.com</endpoint-url>
+        </endpoint>
+
+        <endpoint>
+            <id>google-api</id>
+            <connector-id>http</connector-id>
+            <endpoint-url>https://www.googleapis.com</endpoint-url>
+        </endpoint>
+    </remote>
+</alfresco-config>

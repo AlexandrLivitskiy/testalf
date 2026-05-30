@@ -23,4 +23,31 @@
 		  class="ua.edu.onu.platformsample.HelloWorldWebScript"
 		  parent="webscript">
 	</bean>
+	<bean id="webscript.ua.edu.onu.google.login-by-google.post"
+		  class="ua.edu.onu.google.LoginByGoogle"
+		  parent="webscript">
+		<property name="authenticationService" ref="authenticationService"/>
+		<property name="transactionService" ref="TransactionService"/>
+		<property name="personService" ref="PersonService"/>
+	</bean>
+	<bean id="webscript.ua.edu.onu.google.save-token.post"
+		  class="ua.edu.onu.google.SaveGoogleTokenWebscript"
+		  parent="webscript">
+		<property name="personService" ref="PersonService"/>
+		<property name="nodeService" ref="NodeService"/>
+	</bean>
+	<bean id="webscript.ua.edu.onu.google.get-token.get"
+		  class="ua.edu.onu.google.GetGoogleTokenWebscript"
+		  parent="webscript">
+		<property name="personService" ref="PersonService"/>
+		<property name="nodeService" ref="NodeService"/>
+	</bean>
+	<bean id="webscript.ua.edu.onu.google.create-doc.post"
+		  class="ua.edu.onu.google.CreateGoogleDocWebScript"
+		  parent="webscript">
+	</bean>
+	<bean id="webscript.ua.edu.onu.google.grant-access.post"
+		  class="ua.edu.onu.google.GrantGoogleAccessToUser"
+		  parent="webscript">
+	</bean>
 </beans>

@@ -10,6 +10,239 @@
              alfresco/tomcat/shared/classes/alfresco/web-extension/share-config-custom.xml
      -->
 <alfresco-config>
+<!--    <config evaluator="string-compare" condition="Remote">-->
+<!--        <remote>-->
+<!--            <connector-id>alfrescoCookie</connector-id>-->
+<!--        </remote>-->
+<!--    </config>-->
+
+<!--    <config evaluator="string-compare" condition="Login">-->
+<!--        <forms>-->
+<!--            <form id="login">-->
+<!--                <controls>-->
+<!--                    <control>-->
+<!--                        <control-template>-->
+<!--                            <a href="/share/service/google/login" class="google-login">-->
+<!--                                <img src="/share/res/components/images/google_signin.png"-->
+<!--                                     alt="Login with Google"/>-->
+<!--                            </a>-->
+<!--                        </control-template>-->
+<!--                    </control>-->
+<!--                </controls>-->
+<!--            </form>-->
+<!--        </forms>-->
+<!--    </config>-->
+<!--    <config evaluator="string-compare" condition="Remote">-->
+<!--        <remote>-->
+<!--            <endpoint id="google" type="json"-->
+<!--                      description="Google OAuth2 Token API"-->
+<!--                      connector-id="alfresco"-->
+<!--                      endpoint-url="https://oauth2.googleapis.com"-->
+<!--                      identity="none"/>-->
+<!--            <endpoint id="google-api" type="json"-->
+<!--                      description="Google UserInfo API"-->
+<!--                      connector-id="alfresco"-->
+<!--                      endpoint-url="https://www.googleapis.com"-->
+<!--                      identity="none"/>-->
+<!--        </remote>-->
+<!--    </config>-->
+<!--    <config evaluator="string-compare" condition="Remote">-->
+<!--        <remote>-->
+<!--            <endpoint name="keycloak" description="Keycloak"-->
+<!--                      connector="http"-->
+<!--                      endpoint-url="https://testalf.onu.edu.ua/auth"-->
+<!--                      external="true"-->
+<!--                      identity="none"/>-->
+<!--        </remote>-->
+<!--    </config>-->
+<!--    <config evaluator="string-compare" condition="Remote">-->
+<!--        <remote>-->
+<!--            <id>keycloak</id>-->
+<!--            <name>Keycloak</name>-->
+<!--            <endpoint>-->
+<!--                <protocol>https</protocol>-->
+<!--                <host>testalf.onu.edu.ua</host>-->
+<!--                <port>443</port>-->
+<!--                <path>/auth</path>-->
+<!--                <secure>true</secure>-->
+<!--                <timeout>5000</timeout>-->
+<!--            </endpoint>-->
+<!--        </remote>-->
+<!--    </config>-->
+
+
+<!--**************************************  Start  Google Dod Workflow ****************************************************-->
+    <config evaluator="string-compare" condition="activiti$googleDocWorkflow">
+        <forms>
+            <form>
+                <field-visibility>
+                    <show id="bpm:assignee" />
+                    <show id="bpm:workflowDescription" />
+                    <show id="tawf:googleDocType" />
+                    <show id="tawf:googleDriveUploadFiles" />
+                    <show id="tawf:customer" />
+                    <show id="tawf:address" />
+                    <show id="tawf:room" />
+                    <show id="tawf:priority" />
+                    <show id="tawf:description" />
+                </field-visibility>
+                <appearance>
+                    <set id="" appearance="title" label-id="workflow.set.general" />
+                    <set id="items" appearance="title" label-id="workflow.set.items" />
+                    <field id="tawf:googleDocType" label="Google Doc Type" />
+                    <field id="tawf:googleDriveUploadFiles" label="Прикриплені файли">
+                        <control template="/org/custom/form/controls/google-drive-upload.ftl" />
+                    </field>
+
+                    <field id="bpm:assignee" label="Виконавець">
+                        <control template="/org/alfresco/components/form/controls/authority.ftl">
+                            <control-param name="authorityType">USER</control-param>
+                            <control-param name="multiple">false</control-param>
+                        </control>
+                    </field>
+                    <field id="bpm:workflowDescription" label="Назва"/>
+                    <field id="tawf:description" label="Опис">
+                        <control template="/org/alfresco/components/form/controls/textarea.ftl">
+                            <control-param name="rows">6</control-param>
+                            <control-param name="style">width: 95%</control-param>
+                        </control>
+                    </field>
+                    <field id="tawf:customer" label="Замовник" >
+                        <control template="/org/alfresco/components/form/controls/textfield.ftl">
+                            <control-param name="maxlength">70</control-param>
+                        </control>
+                    </field>
+                    <field id="tawf:address" label="Адреса" />
+                    <field id="tawf:room" label="Кабінет" >
+                        <control template="/org/alfresco/components/form/controls/textfield.ftl">
+                            <control-param name="maxlength">70</control-param>
+                        </control>
+                    </field>
+                    <field id="tawf:priority" label="Пріорітет Задачі" />
+                </appearance>
+            </form>
+        </forms>
+    </config>
+
+    <config evaluator="task-type" condition="tawf:googleDocTask">
+        <forms>
+            <form>
+                <field-visibility>
+                    <show id="tawf:description" />
+                    <show id="tawf:googleDocLink" />
+                    <show id="tawf:googleDriveFiles" />
+                    <show id="tawf:customer" />
+                    <show id="tawf:address" />
+                    <show id="tawf:room" />
+                    <show id="tawf:doneWorks" />
+                    <show id="tawf:comment" />
+                    <show id="transitions" />
+                    <show id="bpm:status" />
+                    <show id="tawf:priority" />
+                </field-visibility>
+                <appearance>
+                    <set id="" appearance="title" label-id="workflow.set.general" />
+                    <set id="items" appearance="title" label-id="workflow.set.items" />
+                    <field id="tawf:googleDocLink" label="Google Doc">
+                        <control template="/org/custom/form/controls/google-doc.ftl">
+<!--                            <control-param name="docName">${bpm_workflowDescription}</control-param>-->
+<!--                            <control-param name="docName" value="${bpm_workflowDescription}" />-->
+<!--                            <control-param name="iconUrl">https://images.icon-icons.com/2631/PNG/512/google_docs_new_logo_icon_159146.png</control-param>-->
+<!--                            <control-param name="iconUrl" value="https://images.icon-icons.com/2631/PNG/512/google_docs_new_logo_icon_159146.png" />-->
+<!--                            <control-param name="iconUrl" value="${tawf_googleDocIcon}" />-->
+                        </control>
+                    </field>
+                    <field id="tawf:googleDriveFiles" label="Google Drive Files">
+                        <control template="/org/custom/form/controls/google-drive-files.ftl"/>
+                    </field>
+                    <set id="progress" appearance="title" label-id="workflow.set.task.progress" />
+
+                    <field id="tawf:description" label="Опис">
+                        <control template="/org/alfresco/components/form/controls/textarea.ftl">
+                            <control-param name="rows">6</control-param>
+                            <control-param name="style">width: 95%</control-param>
+                        </control>
+                    </field>
+                    <field id="tawf:customer" label="Замовник" >
+                        <control template="/org/alfresco/components/form/controls/textfield.ftl">
+                            <control-param name="maxlength">70</control-param>
+                        </control>
+                    </field>
+                    <field id="tawf:address" label="Адреса" />
+                    <field id="tawf:room" label="Кабінет" >
+                        <control template="/org/alfresco/components/form/controls/textfield.ftl">
+                            <control-param name="maxlength">70</control-param>
+                        </control>
+                    </field>
+                    <field id="tawf:doneWorks" label="Проведені роботи">
+                        <control template="/org/alfresco/components/form/controls/textarea.ftl">
+                            <control-param name="rows">6</control-param>
+                            <control-param name="style">width: 95%</control-param>
+                        </control>
+                    </field>
+                    <field id="tawf:comment" label="Примітка">
+                        <control template="/org/alfresco/components/form/controls/textarea.ftl">
+                            <control-param name="rows">6</control-param>
+                            <control-param name="style">width: 95%</control-param>
+                        </control>
+                    </field>
+                    <field id="tawf:priority" label="Пріорітет Задачі" />
+                    <field id="bpm:status" set="progress" label="Стан"/>
+                </appearance>
+            </form>
+        </forms>
+    </config>
+
+    <config evaluator="task-type" condition="tawf:startGoogleDoc123">
+        <forms>
+            <form>
+                <field-visibility>
+                    <show id="bpm:assignee" />
+                    <show id="bpm:workflowDescription" />
+                    <show id="tawf:googleDocType" />
+                    <show id="tawf:googleDriveUploadFiles" />
+                    <hide id="tawf:googleDocLink" />
+                    <hide id="tawf:googleDriveFiles" />
+                    <show id="tawf:customer" />
+                    <show id="tawf:address" />
+                    <show id="tawf:room" />
+                    <show id="tawf:priority" />
+                    <show id="tawf:description" />
+                </field-visibility>
+                <appearance>
+                    <set id="" appearance="title" label-id="workflow.set.general" />
+                    <set id="items" appearance="title" label-id="workflow.set.items" />
+                    <field id="tawf:googleDocType" label="Google Doc Type" />
+<!--                    <field id="packageItems" set="items" label="Прикриплені файли" />-->
+                    <field id="tawf:googleDriveUploadFiles" label="Upload Files">
+                        <control template="/org/custom/form/controls/google-drive-upload.ftl" />
+                    </field>
+
+                    <field id="bpm:workflowDescription" label="Назва"/>
+                    <field id="tawf:description" label="Опис">
+                        <control template="/org/alfresco/components/form/controls/textarea.ftl">
+                            <control-param name="rows">6</control-param>
+                            <control-param name="style">width: 95%</control-param>
+                        </control>
+                    </field>
+                    <field id="tawf:customer" label="Замовник" >
+                        <control template="/org/alfresco/components/form/controls/textfield.ftl">
+                            <control-param name="maxlength">70</control-param>
+                        </control>
+                    </field>
+                    <field id="tawf:address" label="Адреса" />
+                    <field id="tawf:room" label="Кабінет" >
+                        <control template="/org/alfresco/components/form/controls/textfield.ftl">
+                            <control-param name="maxlength">70</control-param>
+                        </control>
+                    </field>
+                    <field id="tawf:priority" label="Пріорітет Задачі" />
+                </appearance>
+            </form>
+        </forms>
+    </config>
+
+<!--**************************************  End  Google Dod Workflow ******************************************************-->
 
     <config evaluator="string-compare" condition="activiti$fastSupport">
         <forms>

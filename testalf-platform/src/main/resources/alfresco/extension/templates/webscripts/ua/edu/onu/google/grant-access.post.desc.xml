@@ -1,0 +1,8 @@
+<webscript>
+    <shortname>Grant Google Access</shortname>
+    <description>Grant Google Access to User for doc file by id and user email</description>
+    <url>/google/grantAccess</url>
+    <method>POST</method>
+    <format default="json"/>
+    <authentication>admin</authentication>
+</webscript>

@@ -1,0 +1,8 @@
+<webscript>
+    <shortname>Test Google</shortname>
+    <description>Test remote GET to Google endpoint</description>
+    <family>Share</family> <!-- ! -->
+    <url>/testgoogle</url>
+    <authentication>none</authentication>
+    <format default="html"/>
+</webscript>

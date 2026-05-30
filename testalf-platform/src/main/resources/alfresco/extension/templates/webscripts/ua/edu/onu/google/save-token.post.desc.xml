@@ -1,0 +1,8 @@
+<webscript>
+    <shortname>Save Google Token</shortname>
+    <description>Save Google OAuth Token</description>
+    <url>/google/saveToken</url>
+    <authentication>user</authentication>
+    <method>POST</method>
+    <format default="json"/>
+</webscript>

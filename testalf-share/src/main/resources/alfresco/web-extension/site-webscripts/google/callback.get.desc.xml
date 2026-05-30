@@ -1,0 +1,6 @@
+<webscript>
+    <shortname>Google OAuth2 Callback</shortname>
+    <description>Simple test callback page</description>
+    <family>Share</family>
+    <url>/google/callback</url>
+</webscript>

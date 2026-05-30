@@ -1,0 +1,6 @@
+<webscript>
+    <shortname>Test Endpoints</shortname>
+    <description>Display all remote endpoints visible to Share</description>
+    <family>Share</family>
+    <url>/testendpoints</url>
+</webscript>

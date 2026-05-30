@@ -36,6 +36,20 @@
         <property name="nodeService" ref="NodeService" />
         <property name="nodeLocatorService" ref="nodeLocatorService" />
     </bean>
+    <bean id="googleDocService"
+          class="ua.edu.onu.google.GoogleDocServiceImpl"/>
+    <bean id="googleAccessService"
+          class="ua.edu.onu.google.GoogleAccessServiceImpl"/>
+    <bean id="googleCommonService"
+          class="ua.edu.onu.google.GoogleCommonService">
+        <property name="tokenUrl" value="https://oauth2.googleapis.com/token"/>
+        <property name="driveUrl" value="https://www.googleapis.com/drive/v3/files"/>
+    </bean>
+    <bean id="createGoogleDocDelegate"
+          class="ua.edu.onu.workflow.CreateGoogleDocDelegate">
+        <property name="nodeService" ref="NodeService"/>
+        <property name="contentService" ref="ContentService"/>
+    </bean>
 
 
 </beans>

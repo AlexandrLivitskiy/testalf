@@ -1,9 +1,7 @@
 <import resource="classpath:alfresco/site-webscripts/org/alfresco/components/workflow/workflow.lib.js">
 
-// Получаем список определений воркфлоу
 var allWorkflows = getWorkflowDefinitions();
 
-// Указываем workflow, которые нужно скрыть (по имени)
 var hiddenWorkflowNames = [
 //   "activiti$activitiAdhoc",
 //   "activiti$activitiReview",
@@ -13,7 +11,6 @@ var hiddenWorkflowNames = [
    "activiti$my-process"
 ];
 
-// Фильтруем список
 model.workflowDefinitions = [];
 for (var i = 0; i < allWorkflows.length; i++) {
    var wf = allWorkflows[i];

@@ -1,0 +1,7 @@
+<webscript>
+    <shortname>Get User Home</shortname>
+    <description>Returns current user home folder NodeRef</description>
+    <url>/custom/userhome</url>
+    <format default="json"/>
+    <authentication>user</authentication>
+</webscript>

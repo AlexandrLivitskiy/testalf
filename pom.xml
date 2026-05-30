@@ -47,6 +47,11 @@
                      the Alfresco Maven IT Mojo runs as part of the parent project ... -->
   <dependencies>
     <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>javax.servlet-api</artifactId>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
       <scope>test</scope>
@@ -294,6 +299,7 @@
               <excludes>
                 <exclude>**/webscripts/**</exclude>
                 <exclude>**/site-webscripts/**</exclude>
+                <exclude>**/templates/**</exclude>
                 <exclude>**/META-INF/**</exclude>
                 <exclude>**/*.lib.js</exclude>
                 <exclude>**/*.css</exclude>
@@ -314,6 +320,7 @@
               <excludes>
                 <exclude>**/webscripts/**</exclude>
                 <exclude>**/site-webscripts/**</exclude>
+                <exclude>**/templates/**</exclude>
                 <exclude>**/*.lib.js</exclude>
                 <exclude>**/*.css</exclude>
                 <exclude>**/*-min.js</exclude>

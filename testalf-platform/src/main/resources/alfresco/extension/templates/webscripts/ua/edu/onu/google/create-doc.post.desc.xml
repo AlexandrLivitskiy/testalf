@@ -1,0 +1,8 @@
+<webscript>
+    <shortname>Create Google Doc</shortname>
+    <description>Create New Google Doc</description>
+    <url>/google/createDoc</url>
+    <method>POST</method>
+    <format default="json"/>
+    <authentication>user</authentication>
+</webscript>

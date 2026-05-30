@@ -23,6 +23,25 @@
         Constraints, Types, and Aspects go here...
         -->
     <types>
+        <type name="tawf:startGoogleDoc">
+            <parent>bpm:startTask</parent>
+            <mandatory-aspects>
+                <aspect>bpm:assignee</aspect>
+                <aspect>tawf:fastSupportAspect</aspect>
+                <aspect>tawf:googleAddAspect</aspect>
+                <aspect>tawf:googleDriveAspect</aspect>
+            </mandatory-aspects>
+        </type>
+
+        <type name="tawf:googleDocTask">
+            <parent>bpm:workflowTask</parent>
+            <mandatory-aspects>
+                <aspect>tawf:fastSupportAspect</aspect>
+<!--                <aspect>tawf:googleAddAspect</aspect>-->
+                <aspect>tawf:googleDriveAspect</aspect>
+            </mandatory-aspects>
+        </type>
+
         <type name="tawf:startFastSupport">
             <parent>bpm:startTask</parent>
             <mandatory-aspects>
@@ -45,9 +64,104 @@
                 <aspect>tawf:fastSupportAspect</aspect>
             </mandatory-aspects>
         </type>
+
+        <!-- ================================================= -->
+        <!-- Google Drive File Metadata Child Node             -->
+        <!-- ================================================= -->
+        <type name="tawf:googleDriveFile">
+            <title>Google Drive File</title>
+            <parent>cm:content</parent>
+            <properties>
+                <property name="tawf:fileNameGD">
+                    <type>d:text</type>
+                    <mandatory>true</mandatory>
+                </property>
+                <property name="tawf:fileUrlGD">
+                    <type>d:text</type>
+                    <mandatory>true</mandatory>
+                </property>
+                <property name="tawf:fileIdGD">
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                </property>
+                <property name="tawf:imgSrcIconGD">
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                </property>
+                <property name="tawf:mimeTypeGD">
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                </property>
+            </properties>
+        </type>
     </types>
 
     <aspects>
+        <aspect name="tawf:googleAddAspect">
+            <properties>
+                <property name="tawf:googleDocType">
+                    <type>d:text</type>
+                    <mandatory>true</mandatory>
+                    <multiple>false</multiple>
+                    <constraints>
+                        <constraint name="tawf:googleDocTypeConstraint" type="LIST">
+                            <parameter name="allowedValues">
+                                <list>
+                                    <value>(-------)</value>
+                                    <value>Документ</value>
+                                    <value>Таблиця</value>
+                                    <value>Презентація</value>
+                                    <value>План розробки продукту</value>
+                                    <value>Чернетка електронного листа</value>
+                                </list>
+                            </parameter>
+                        </constraint>
+                    </constraints>
+                </property>
+                <property name="tawf:googleDriveUploadFiles">
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                    <multiple>false</multiple>
+                    <constraints>
+                        <constraint name="tawf:googleDriveUploadFilesLengthConstraint" type="LENGTH">
+                            <parameter name="maxLength">
+                                <value>4096</value>
+                            </parameter>
+                        </constraint>
+                    </constraints>
+                </property>
+            </properties>
+        </aspect>
+
+        <aspect name="tawf:googleDriveAspect">
+            <properties>
+                <property name="tawf:googleDocLink">
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                    <multiple>false</multiple>
+                    <constraints>
+                        <constraint name="tawf:googleDocLinkLengthConstraint" type="LENGTH">
+                            <parameter name="maxLength">
+                                <value>256</value>
+                            </parameter>
+                        </constraint>
+                    </constraints>
+                </property>
+                <property name="tawf:googleDriveFiles">
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                    <multiple>false</multiple>
+                    <constraints>
+                        <constraint name="tawf:googleDriveFilesLengthConstraint" type="LENGTH">
+                            <parameter name="maxLength">
+                                <value>4096</value>
+                            </parameter>
+                        </constraint>
+                    </constraints>
+                </property>
+            </properties>
+        </aspect>
+
         <aspect name="tawf:fastSupportAspect">
             <properties>
                 <property name="tawf:description">

@@ -1,0 +1,7 @@
+<webscript>
+    <shortname>Test Google</shortname>
+    <description>Test call to Google endpoint</description>
+    <url>/test/google</url>
+    <family>Share</family>
+    <format default="html">html</format>
+</webscript>

@@ -1,0 +1,7 @@
+<webscript>
+    <shortname>Google SSO Login</shortname>
+    <description>Login via Google token</description>
+    <url>/sso/googlesso</url>
+    <authentication>none</authentication>
+    <format default="json"/>
+</webscript>

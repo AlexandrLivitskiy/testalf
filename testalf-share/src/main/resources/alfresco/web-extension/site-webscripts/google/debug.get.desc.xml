@@ -1,0 +1,6 @@
+<webscript>
+    <shortname>DEBUG</shortname>
+    <description>Simple test debug page</description>
+    <family>Share</family>
+    <url>/google/debug</url>
+</webscript>

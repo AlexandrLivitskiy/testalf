@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model name="google:googleTokenModel"
+       xmlns="http://www.alfresco.org/model/dictionary/1.0">
+
+    <description>Google OAuth token model</description>
+    <author>LA</author>
+    <version>1.0</version>
+
+    <imports>
+        <import uri="http://www.alfresco.org/model/dictionary/1.0" prefix="d"/>
+        <import uri="http://www.alfresco.org/model/content/1.0" prefix="cm"/>
+    </imports>
+
+    <namespaces>
+        <namespace uri="http://www.testalf.onu.edu.ua/model/google/1.0"
+                   prefix="google"/>
+    </namespaces>
+
+    <aspects>
+        <aspect name="google:tokenAspect">
+            <title>Google OAuth Token</title>
+            <properties>
+                <property name="google:tokenValue">
+                    <type>d:text</type>
+                </property>
+                <property name="google:expiresAt">
+                    <type>d:datetime</type>
+                </property>
+            </properties>
+        </aspect>
+    </aspects>
+
+</model>
